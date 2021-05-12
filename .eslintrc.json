@@ -1,18 +1,21 @@
 {
   "extends": [
-    "eslint:recommended", 
-    "plugin: import/errors",
+    "eslint:recommended",
+    "plugin:import/errors",
     "plugin:react/recommended",
-    "plugin: jsx-a11y/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
     "prettier"
   ],
   "rules": {
     "react/prop-types": 0,
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "jsx-a11y/label-has-for": 0,
+    "no-console": 1
   },
   "plugins": ["react", "import", "jsx-a11y"],
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2021,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -23,7 +26,7 @@
     "browser": true,
     "node": true
   },
-  "setting": {
+  "settings": {
     "react": {
       "version": "detect"
     }
