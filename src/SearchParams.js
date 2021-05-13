@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import Pet from './Pet';
+import useBreedList from './useBreedList';
 
-const animals = ["Bird", "Dog", "Cat", "Rabbit", "Reptile"];
-const breeds = [];
+const animals = ["bird", "dog", "cat", "rabbit", "reptile"];
 
 const SearchParams = () => {
   const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
+  const [breeds] = useBreedList(animal);
 
   useEffect(() => {
     requestPets();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function requestPets() {
     const res = await fetch(
@@ -41,8 +41,8 @@ const SearchParams = () => {
            <select
             id="animal"
             value={animal}
-            onChange={e => setAnimal(e.target.value)}
-            onBlur={e => setAnimal(e.target.value)}
+            onChange={(e) => setAnimal(e.target.value)}
+            onBlur={(e) => setAnimal(e.target.value)}
           >
             <option />
             {animals.map(elm => <option value={elm} key={elm}>{elm}</option>)}
@@ -53,11 +53,15 @@ const SearchParams = () => {
            <select
             id="breed"
             value={breed}
-            onChange={e => setBreed(e.target.value)}
-            onBlur={e => setBreed(e.target.value)}
+            onChange={(e) => setBreed(e.target.value)}
+            onBlur={(e) => setBreed(e.target.value)}
           >
             <option />
-            {breeds.map(elm => <option value={elm} key={elm}>{elm}</option>)}
+            {breeds.map(elm => (
+              <option value={elm} key={elm}>
+              {elm}
+              </option>
+              ))}
            </select>
         </label>
         <button>Submit</button>
